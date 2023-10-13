@@ -1,5 +1,6 @@
 package com.gateway.apigatewayserver.config;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.cloud.gateway.route.RouteLocator;
 import org.springframework.cloud.gateway.route.builder.RouteLocatorBuilder;
@@ -18,19 +19,27 @@ Spring Cloud Gateway filter은 Gateway Handler Mapping 시 requestHeader을 추�
 
 @Configuration
 public class FilterConfig {
+
+
+    @Autowired
+    private CustomFilter customFilter;
+
     @Bean
     public RouteLocator gatewayRoutes(RouteLocatorBuilder builder){
         return builder.routes()
                 .route("first-service",r -> r.path("/first-service/**") // 아이디값부터 path, fillters 적용..
                         .filters(f->f.addRequestHeader("first-request","first-request-header")
-                                .addResponseHeader("first-response", "first-response-header"))
+                                .addResponseHeader("first-response", "first-response-header")
+                                .filter(customFilter.apply(new CustomFilter.Config())))
+
                         .uri("http://localhost:8081")) //route 객체에 path 정보 추가
 
 
 
                 .route(r -> r.path("second-service","/second-service/**")
                         .filters(f->f.addRequestHeader("second-request","second-request-header")
-                                .addResponseHeader("second-response", "second-response-header"))
+                                .addResponseHeader("second-response", "second-response-header")
+                                .filter(customFilter.apply(new CustomFilter.Config())))
                         .uri("http://localhost:8082"))
                 .build();
 
