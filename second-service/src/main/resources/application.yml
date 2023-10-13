@@ -3,5 +3,7 @@ server:
 
 
 spring:
-    application:
-      name: second-service
+  application:
+    name: second-service
+
+
