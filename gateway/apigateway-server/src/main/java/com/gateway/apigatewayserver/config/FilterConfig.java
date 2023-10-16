@@ -64,7 +64,7 @@ Custom global post-filter executed
                                         .preLogger(true)
                                         .postLogger(true)
                                         .build())))
-                        .uri("http://localhost:8081")) //route 객체에 path 정보 추가
+                        .uri("lb://FIRST-SERVICE")) //route 객체에 path 정보 추가
 
 
 
@@ -77,7 +77,7 @@ Custom global post-filter executed
                                         .preLogger(true)
                                         .postLogger(true)
                                         .build())))
-                        .uri("http://localhost:8082"))
+                        .uri("lb://SECOND-SERVICE"))
                 .build();
 
     }

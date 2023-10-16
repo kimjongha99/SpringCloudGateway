@@ -4,9 +4,11 @@ server:
 spring:
   application:
     name: eureka
-  config:
-    import: optional:configserver:${CONFIG_SERVER_URL:http://localhost:8080/}
+
+
+
 eureka:
   client:
-    registerWithEureka: false
-    fetchRegistry: false
+    registerWithEureka: false  # 유레카 서버에도  유레카 등록할것인가?
+    fetchRegistry: false  #   등록된 마이크로서비스와 통신을할것인가
+
