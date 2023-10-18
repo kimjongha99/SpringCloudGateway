@@ -21,6 +21,19 @@ spring:
             postLogger: true
 
       routes:
+        - id: item-service
+          uri: lb://ITEM-SERVICE
+          predicates:
+            - Path=/item-service/**
+
+
+        - id: user-service
+          uri: lb://USER-SERVICE
+          predicates:
+            - Path=/user-service/**
+
+
+
         - id: first-service
           uri: lb://MY-FIRST-SERVICE
           predicates:
@@ -47,7 +60,10 @@ spring:
                 postLogger: true
 
 
-##config server 에서 적용할꺼면 아래 토큰 주석처리
+
+
+
+  ##config server 에서 적용할꺼면 아래 토큰 주석처리
 #token:
  # expiration-time: 86400000 # 하루짜리 토큰 생성
   #secret: secret-key
