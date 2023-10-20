@@ -7,6 +7,5 @@ spring:
   cloud:
     config:
       server:
-        native:
-          search-locations: file:///Users/kims/Documents/GitHub/SpringCloudGateway/eureka/git-local-repo/ecommerce.yml
-
+        git:
+          uri: file:\\C:\Users\kims\Documents\GitHub\Spring-Cloud-Config

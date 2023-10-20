@@ -20,7 +20,7 @@ public class ItemDetailService implements ItemService {
                 .productName(requestItemRegisterDto.getProductName())
                 .stock(requestItemRegisterDto.getStock())
                 .pricePerItem(requestItemRegisterDto.getPricePerItem())
-                .build();
+                .build();  // 이렇게 안쓰려면 toEntity 추가해야댐
 
         itemRepository.save(item);
 
