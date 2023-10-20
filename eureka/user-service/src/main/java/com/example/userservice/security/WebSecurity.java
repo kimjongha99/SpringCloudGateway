@@ -12,6 +12,7 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.web.authentication.AuthenticationFilter;
 
 import javax.servlet.Filter;
 
@@ -24,14 +25,23 @@ public class WebSecurity extends WebSecurityConfigurerAdapter {
     public BCryptPasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
+
+
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable();
         http.authorizeRequests()
                 .antMatchers("/**/**")
                 .permitAll()// 해당 주소는 인증, 인가 없이 접속 가능하며
+                .antMatchers("/error/**").permitAll()
+                .antMatchers("/actuator/**").permitAll()
+                .antMatchers("/**")
+                .hasIpAddress("192.168.219.109")
                 .anyRequest().authenticated();// 나머지에 대해서는 인증을 요구하겠습니다.
 
-    }
+                 http.headers().frameOptions().disable();
 
     }
+
+
+}

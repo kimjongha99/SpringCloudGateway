@@ -8,4 +8,6 @@ spring:
     config:
       server:
         git:
-          uri: file:\\C:\Users\kims\Documents\GitHub\Spring-Cloud-Config
+          uri: https://github.com/kimjongha99/Spring-Cloud-Config
+          username: ENC(Wth2cpf4K6WnZgZNmjQ2ROuyEEQbuRIx)
+          password: ENC(Z5UfB0DVRuq+5q2KhuSUp4v0e2e2rGPA)

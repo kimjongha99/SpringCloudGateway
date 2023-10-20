@@ -29,3 +29,14 @@ eureka:
       default-zone: http://127.0.0.1:8761/eureka
   instance:
     instance-id: ${spring.application.name}:${spring.application.instance_id:${random.value}}
+
+
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: refresh, health, beans
+#refresh : config server에서 가져와야할 정보를 refresh 하겠다는 뜻입니다.
+#health : 애플리케이션의 상태 확인 옵션입니다.
+#beans : 애플리케이션에 있는 모든 Spring 빈의 전체 목록을 표시합니다.
