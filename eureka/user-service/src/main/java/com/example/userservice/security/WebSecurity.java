@@ -33,10 +33,6 @@ public class WebSecurity extends WebSecurityConfigurerAdapter {
         http.authorizeRequests()
                 .antMatchers("/**/**")
                 .permitAll()// 해당 주소는 인증, 인가 없이 접속 가능하며
-                .antMatchers("/error/**").permitAll()
-                .antMatchers("/actuator/**").permitAll()
-                .antMatchers("/**")
-                .hasIpAddress("192.168.219.109")
                 .anyRequest().authenticated();// 나머지에 대해서는 인증을 요구하겠습니다.
 
                  http.headers().frameOptions().disable();

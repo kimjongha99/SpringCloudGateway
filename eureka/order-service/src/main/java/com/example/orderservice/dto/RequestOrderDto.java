@@ -3,7 +3,6 @@ package com.example.orderservice.dto;
 
 import com.example.orderservice.entity.Order;
 import lombok.*;
-
 import java.time.LocalDateTime;
 import java.util.UUID;
 
@@ -31,9 +30,6 @@ public class RequestOrderDto {
                 .createdAt(LocalDateTime.now())
                  .userId(this.userId)
               .productId(this.productId)
-
-
-
                 .build();
     }
 }

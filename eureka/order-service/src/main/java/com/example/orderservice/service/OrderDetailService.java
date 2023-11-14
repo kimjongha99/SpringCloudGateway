@@ -6,6 +6,9 @@ import com.example.orderservice.repository.OrderRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.Optional;
+
 @Service
 @RequiredArgsConstructor
 public class OrderDetailService implements  OrderService{
@@ -28,4 +31,11 @@ public class OrderDetailService implements  OrderService{
                 .count(savedOrder.getCount())
                 .build();
     }
+
+    // userId 입력하면 Order 리스트 넘겨주는 메서드
+    @Override
+    public  Optional<List<Order>> getOrderListByUserId(String userId){
+        return orderRepository.findOrderByUserId(userId);
+    }
+
 }

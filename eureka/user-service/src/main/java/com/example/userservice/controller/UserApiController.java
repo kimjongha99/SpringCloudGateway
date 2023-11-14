@@ -1,9 +1,12 @@
 package com.example.userservice.controller;
 
 
+import com.example.userservice.client.UserToOrderClient;
 import com.example.userservice.dto.RequestCreateUserDto;
 import com.example.userservice.dto.ResponseFindUserDto;
+import com.example.userservice.entity.Order;
 import com.example.userservice.entity.User;
+import com.example.userservice.repository.UserRepository;
 import com.example.userservice.service.UserService;
 import org.springframework.core.env.Environment;
 import org.springframework.http.HttpStatus;
@@ -20,9 +23,14 @@ public class UserApiController {
     private final Environment env;
     private final UserService userService;  // Inject the UserService here.
 
-    public UserApiController(Environment env, UserService userService) {
+    private  final UserToOrderClient userToOrderClient;
+    private  final UserRepository userRepository;
+
+    public UserApiController(Environment env, UserService userService, UserToOrderClient userToOrderClient, UserRepository userRepository) {
         this.env = env;
         this.userService = userService;
+        this.userToOrderClient = userToOrderClient;
+        this.userRepository = userRepository;
     }
 
     @GetMapping("/health-check")
@@ -52,4 +60,12 @@ public class UserApiController {
         List<User> users = userService.getAllUsers();
         return new ResponseEntity<>(users, HttpStatus.OK);
     }
+
+    @GetMapping("/users/{userId}/orders")
+    public ResponseEntity<ResponseFindUserDto> getUserOrders(@PathVariable String userId) {
+        return ResponseEntity.ok(userService.getUserOrders(userId));
+    }
+
 }
+
+

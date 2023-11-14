@@ -6,6 +6,7 @@ import com.example.userservice.dto.ResponseFindUserDto;
 import com.example.userservice.entity.User;
 import com.example.userservice.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -18,4 +19,6 @@ public interface UserService {
 
 
     List<User> getAllUsers();
+
+    ResponseFindUserDto getUserOrders(String userId);
 }
